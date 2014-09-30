@@ -1,0 +1,33 @@
+<section data-ng-controller="MapController">
+<div class="row">
+  <div class="col-lg-3">
+    <div class="panel panel-default" ng-repeat="zone in focusZones">
+      <div class="panel-heading">
+        <h4 class="list-group-item-heading">{{zone.title}}<span class="glyphicon glyphicon-search pull-right"></span></h4>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li  class='tag-cloud'>show all</li>
+          <li ng-repeat="keyword in zone.keywords" class='tag-cloud'>{{keyword}}</li>
+        </ul>
+      </div>
+      <div class="panel-footer">
+        <form action="" class="form-inline">      
+          <input type="text" class="form-control" id="keyword" placeholder="Keyword">
+          <button type="button" class="btn btn-default">Add Keyword</button></form>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <google-map center="map.center" zoom="map.zoom">
+      <polygon static="false" ng-repeat="p in polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible"
+      geodesic="p.geodesic" fill="p.fill" fit="false" editable="p.editable" draggable="p.draggable"></polygon>
+      <marker ng-repeat="marker in markers" coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" >
+        <window show="show">
+          {{marker.title}}
+        </window>
+      </marker>
+    </div>
+  </div>
+</section>

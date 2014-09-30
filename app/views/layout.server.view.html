@@ -45,7 +45,7 @@
 <body class="ng-cloak">
 	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
 	<section class="content">
-		<section class="container">
+		<section class="container-fluid">
 			{% block content %}{% endblock %}
 		</section>
 	</section>
@@ -54,7 +54,7 @@
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};
 	</script>
-
+<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 	<!--Application JavaScript Files-->
 	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
 	{% endfor %} 

@@ -1,5 +1,5 @@
 .content {
-	margin-top: 50px;
+	margin-top: 80px;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -12,4 +12,20 @@
 }
 .ng-valid.ng-dirty{
     border-color:#78FA89;
+}
+
+.angular-google-map-container { height: 800px; }
+
+/* Tag Cloud */
+li.tag-cloud {
+  list-style:none;
+  margin:5px;
+  padding:2px;
+  background: #dddddd;
+  dispaly:block;
+  float: left;
+}
+
+.dropdown :hover {
+    cursor: pointer;
 }

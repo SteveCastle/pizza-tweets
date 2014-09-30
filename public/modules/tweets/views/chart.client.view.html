@@ -1,0 +1,42 @@
+<section data-ng-controller="ChartController">
+<div class="row">
+	<div class="col-lg-3">
+		    <div class="panel panel-default" ng-repeat="zone in focusZones">
+      <div class="panel-heading">
+        <h4 class="list-group-item-heading">{{zone.title}}<span class="glyphicon glyphicon-search pull-right"></span></h4>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li  class='tag-cloud'>show all</li>
+          <li ng-repeat="keyword in zone.keywords" class='tag-cloud'>{{keyword}}</li>
+        </ul>
+      </div>
+      </div>
+	</div>
+	<div class="col-lg-9">
+			<div class="panel panel-default">
+		<div class="panel-body">
+
+			<form class="form-inline" role="form">
+
+				<div class="form-group">
+					<label class="sr-only" for="start">start</label>
+					<input type="text" class="form-control" id="start" placeholder="Start">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="end">End</label>
+					<input type="text" class="form-control" id="end" placeholder="End">
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default">Daily</button>
+					<button type="button" class="btn btn-default">Weekly</button>
+				</div>
+
+			</div>
+		</form>	
+	</div>
+</div>
+		<div linechart data="data" bar-height="20" bar-padding="5" class="col-lg-9"></div>
+	</div>
+</div>
+</section>
