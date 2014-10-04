@@ -2,9 +2,8 @@
 
 angular.module('tweets').controller('MapController', ['$scope','Feedio',
 	function ($scope, Feedio) {
-		$scope.tweets = [];
         Feedio.on('tweet', function (data) {
-        $scope.tweets = $scope.tweets.concat(data);
+        $scope.markers.push({id:data.id, title: data.text, coords: {latitude: data.geo[0], longitude: data.geo[1]}});
         console.log(data);
 });
 		$scope.focusZones = [{

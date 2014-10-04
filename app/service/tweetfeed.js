@@ -31,13 +31,15 @@ var server = new Server('localhost', 27017, {
 db.open(function (err, db) {
     assert.equal(null, err);
     t.stream('statuses/filter', {
-        'locations': '-115.384091, 36.129459,-115.062159,36.336251'
+        'track': 'pizza',
     },
     function (stream) {
         stream.on('data', function (tweet) {
             if (tweet.geo == null) {return ;}
+            console.log(tweet);
             //Create message containing tweet + username + profile pic + location
             var msg = {};
+            msg.id = tweet.id;
             msg.text = tweet.text;
             msg.geo = tweet.geo.coordinates;
             msg.user = {
@@ -47,7 +49,7 @@ db.open(function (err, db) {
             io.sockets.emit('tweet', msg);
             db.collection('tweets', function (err, collection) {
                 collection.insert(tweet);
-                console.log(tweet.user.screen_name,'in ',tweet.place.name, 'says ',tweet.text);
+                console.log(tweet);
             });
         });
     });
