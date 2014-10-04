@@ -1,7 +1,12 @@
 'use strict';
 
-angular.module('tweets').controller('MapController', ['$scope',
-	function ($scope) {
+angular.module('tweets').controller('MapController', ['$scope','Feedio',
+	function ($scope, Feedio) {
+		$scope.tweets = [];
+        Feedio.on('tweet', function (data) {
+        $scope.tweets = $scope.tweets.concat(data);
+        console.log(data);
+});
 		$scope.focusZones = [{
 			title: 'Las Vegas DownTown Community',
 			coordinates: [{

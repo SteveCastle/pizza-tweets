@@ -1,4 +1,11 @@
 'use strict';
+
+var express = require('express');
+var app = express();
+var server = app.listen(9000);
+var io = require('socket.io').listen(server);
+
+
 var twitter = require('ntwitter'),
   credentials = require('../../config/credentials.js');
 
@@ -28,6 +35,16 @@ db.open(function (err, db) {
     },
     function (stream) {
         stream.on('data', function (tweet) {
+            if (tweet.geo == null) {return ;}
+            //Create message containing tweet + username + profile pic + location
+            var msg = {};
+            msg.text = tweet.text;
+            msg.geo = tweet.geo.coordinates;
+            msg.user = {
+                name: tweet.user.name,
+                image: tweet.user.profile_image_url
+            };
+            io.sockets.emit('tweet', msg);
             db.collection('tweets', function (err, collection) {
                 collection.insert(tweet);
                 console.log(tweet.user.screen_name,'in ',tweet.place.name, 'says ',tweet.text);
