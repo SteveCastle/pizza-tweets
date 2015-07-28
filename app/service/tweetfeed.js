@@ -8,7 +8,6 @@ var io = require('socket.io').listen(server);
 
 var twitter = require('ntwitter'),
   credentials = require('../../config/credentials.js');
-
 var t = new twitter({
     consumer_key: credentials.consumer_key,
     consumer_secret: credentials.consumer_secret,
